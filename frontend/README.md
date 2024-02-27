@@ -1,27 +1,61 @@
-# Frontend
+# Itau Secure Pass
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
+Esta interface integra uma api afim de validar senhas, com os seguintes requisitos:
 
-## Development server
+- Nove ou mais caracteres
+- Ao menos 1 dígito
+- Ao menos 1 letra minúscula
+- Ao menos 1 letra maiúscula
+- Ao menos 1 caractere especial (!@#$%^&\*()-+)
+- Não possuir caracteres repetidos dentro do conjunto
+- Não contar espaços em branco como caracteres válidos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Como Executar o Projeto
 
-## Code scaffolding
+1. Certifique-se de ter o Node.js e o Angular CLI instalados em sua máquina.
+2. Execute o comando `npm install` para instalar as dependências.
+3. Execute o comando `npm start` para iniciar o servidor localmente.
+4. Abra o navegador e acesse `http://localhost:4200`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Detalhes sobre a Solução
 
-## Build
+A implementação utiliza o framework Angular JS para criar o App em Node.js.
+O componente do teste está na pasta `password-test`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Tecnologias Utilizadas
 
-## Running unit tests
+- Angular
+- TypeScript
+- Reactive Forms (Para manipulação de formulários)
+- HttpClient (Para fazer chamadas HTTP)
+- RxJS (Para programação reativa)
+- Jasmine e Karma (Para testes unitários)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Estrutura do Projeto
 
-## Running end-to-end tests
+O projeto segue uma arquitetura modular e componentizada para facilitar a manutenção e expansão. A estrutura está organizada da seguinte forma:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **src**
+  - **app**
+    - **password-test** (Módulo do componente de teste de senha)
+      - **password-test.component.ts** (Componente principal do formulário)
+      - **password-test.component.html** (Template HTML do componente)
+      - **password-test.component.less** (Estilos do componente)
+    - **services** ( Módulo do componente de integração com serviços)
+      - **password-test.service.ts** (Serviço para interagir com a API de validação de senhas)
+      - **password-model.ts** (Modelo de dados para representar a resposta da API)
+  - **app.module.ts** (Módulo principal do Angular)
 
-## Further help
+### Clean Code
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+O código foi organizado de maneira clara e legível, seguindo as melhores práticas de codificação.
+
+## Racional nas Decisões
+
+- **Travamento nas rotas:** A decisão de travar as rotas para sempre exibir o formulário de validação foi tomada para simplificar a experiência de teste e focar na funcionalidade principal. Isso permite uma interação direta sem a necessidade de navegação complexa entre diferentes partes da aplicação.
+- **Interface Básica no figma:** Utilizei o Figma para criar uma interface básica e visualmente agradável para o teste. Isso não apenas proporciona uma experiência mais amigável, mas também serve como um guia visual para a implementação do componente.
+- **Não divisão do Componente:** Decidi não dividir o componente password-test em smart/dumb, pois é uma funcionalidade única. Entretanto, reconheço que, à medida que a aplicação cresce, essa divisão pode ser benéfica. Uma proposta de divisão seria criar password-test.container para a lógica de formulários e password-test.presentation para a renderização da interface.
+
+## Premissas Assumidas
+
+- **Fluxo Simples de Validação**: Partindo do princípio de ser uma funcionalidade única, assumi um fluxo simples de validação de formulário por meio de uma API, mantendo o escopo do teste focado e direto.
